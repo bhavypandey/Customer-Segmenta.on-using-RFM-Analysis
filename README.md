@@ -1,50 +1,71 @@
 # Customer-Segmentation-using-RFM-Analysis
-1. Data Preprocessing:
 
-1.1 Impor)ng the Dataset:
+#1. Data Preprocessing:
+
+1.1 Importing the Dataset:
 
 The initial phase involved importing the eCommerce dataset, which was retrieved from
 the provided Kaggle link. The dataset was loaded into a panda DataFrame, allowing for
 efficient explora'on and manipula'on of the data.
+
 1.2 Handling Missing Values:
-1.2.1 Descrip'on Column (1454 missing values):
-The 'Descrip'on' column had 1454 missing values. AIer careful considera'on, it was
+
+1.2.1 Description Column (1454 missing values):
+
+The 'Description' column had 1454 missing values. AIer careful considera'on, it was
 decided to retain these missing values in the dataset. Since our focus is on RFM analysis
 for customer segmenta'on, the absence of a product descrip'on for certain entries is not
-deemed cri'cal.
+deemed critical.
+
 1.2.2 CustomerID Column (135,080 missing values):
-The 'CustomerID' column, crucial for customer iden'fica'on in RFM analysis, had 135,080
+
+The 'CustomerID' column, crucial for customer identification in RFM analysis, had 135,080
 missing values. To ensure the integrity of customer-centric analysis, rows with missing
 'CustomerID' entries were removed from the dataset. This approach allows us to
-concentrate on customers with iden'fiable informa'on.
-1.3 Conver)ng Data Types:
+concentrate on customers with identifiable information.
+
+1.3 Converting Data Types:
+
 1.3.1 InvoiceDate Column:
+
 The 'InvoiceDate' column, originally in object format, was converted to the
-date'me64[ns] data type. This conversion facilitates seamless handling of date-related
-calcula'ons, ensuring accurate recency calcula'ons for RFM analysis.
+datetime64 data type. This conversion facilitates seamless handling of date-related
+calcula'ons, ensuring accurate recency calculations for RFM analysis.
+
 1.3.2 CustomerID Column:
-The 'CustomerID' column, ini'ally represented as floa'ng-point numbers, was converted
+
+The 'CustomerID' column, initially represented as floa'ng-point numbers, was converted
 to the int64 data type. This conversion aligns with standard prac'ces for customer
 iden'fica'on and supports compa'bility with subsequent calcula'ons.
-3. RFM Calcula9on:
+
+#3. RFM Calculation:
+   
 In this sec'on, we further refined the RFM metrics by incorpora'ng the most recent
 purchase date and addi'onal transac'on-related metrics.
+
 2.1 Recent Purchase Date (Recency - R):
+
 To calculate the recency (R) of each customer, we first converted the 'InvoiceDate' to the
 'InvoiceDay' column, represen'ng the date of each transac'on. The maximum
 'InvoiceDay' was then iden'fied as the most recent purchase date across all customers.
 The 'Days_Since_Last_Purchase' metric was computed by subtrac'ng the most recent
 date from each customer's last purchase date.
+
 2.2 Total Transac)ons (Frequency - F):
+
 To gauge the frequency (F) of customer transac'ons, we determined the total number of
 unique invoices ('Total_Transac'ons') for each customer. This metric quan'fies how oIen
 a customer engages in transac'ons with the business.
+
 2.3 Total Products Purchased:
+
 To enrich our understanding of customer behavior, we introduced the
 'Total_Products_Purchased' metric, represen'ng the total quan'ty of unique products
 purchased by each customer. This provides insights into the diversity and breadth of a
 customer's product preferences.
+
 2.4 Resul)ng RFM Metrics:
+
 The resul'ng dataset now includes the following RFM metrics:
 • CustomerID: Unique iden'fier for each customer.
 • Days_Since_Last_Purchase: The recency of each customer's last purchase in terms of
@@ -52,36 +73,52 @@ days.
 • Total_Transac'ons: The total number of unique transac'ons made by each customer.
 • Total_Products_Purchased: The total quan'ty of unique products purchased by each
 customer.
+
 These metrics form a more comprehensive view of customer behavior, capturing recency,
 frequency, and product diversity. The subsequent sec'ons will leverage these refined
 RFM metrics for customer segmenta'on, providing valuable insights for targeted
 marke'ng and engagement strategies.
-4. RFM Segmenta9on:
+
+3. RFM Segmentation:
+   
 In this sec'on, we assigned RFM scores to each customer based on quar'les, enabling the
 crea'on of a single RFM score for comprehensive customer segmenta'on.
+
 3.1 Recency Score (R):
+
 Methodology:
 The most recent purchase date for each customer was determined, and the
 'Days_Since_Last_Purchase' metric was calculated.
 Quar'les were applied to 'Days_Since_Last_Purchase' to create Recency Scores, with
 lower scores indica'ng more recent purchases.
+
 3.2 Frequency Score (F):
+
 Methodology:
+
 Total transac'ons ('Total_Transac'ons') for each customer were calculated, and
 frequency ranks were assigned based on transac'on counts.
 Quar'les were applied to the frequency ranks to create Frequency Scores, with higher
 scores indica'ng more frequent transac'ons.
+
 3.3 Monetary Score (M):
+
 Methodology:
+
 Totals spend ('Total_Spend') for each customer was calculated, and quar'les were
 applied to create Monetary Scores, with higher scores indica'ng higher monetary
 contribu'ons.
+
 3.4 Crea)ng RFM Score:
+
 Methodology:
+
 The Recency, Frequency, and Monetary Scores were combined to create a single RFM
 score for each customer, providing a holis'c view of their engagement and contribu'on
 to the business.
+
 3.5 Resul)ng RFM Segmenta)on:
+
 The resul'ng dataset now includes the following RFM metrics and segmenta'on:
 • CustomerID: Unique iden'fier for each customer.
 • Recency_Score: Recency score based on quar'les.
@@ -89,29 +126,39 @@ The resul'ng dataset now includes the following RFM metrics and segmenta'on:
 • Monetary_Score: Monetary score based on quar'les.
 • RFM_Score: Combined RFM score, indica'ng the overall engagement and value
 contribu'on of each customer.
-5. Customer Segmenta9on:
+
+#4. Customer Segmenta9on:
+   
 In this sec'on, we u'lized clustering techniques, specifically K-Means clustering, to
 segment customers based on their RFM scores. The objec've was to uncover meaningful
 groups that share similar characteris'cs, aiding in targeted marke'ng and engagement
 strategies.
+
 4.1 Data Scaling:
+
 Prior to clustering, the RFM scores (Recency, Frequency, and Monetary) were
 standardized using the StandardScaler. Standardiza'on ensures that all features
 contribute equally to the clustering process, preven'ng any metric from domina'ng the
 results due to differences in scale.
-4.2 Iden)fying Op)mal Number of Clusters:
+
+4.2 Identifying Op)mal Number of Clusters:
+
 To determine the op'mal number of clusters, the Elbow Method was employed. The
 Elbow Method involves fidng the K-Means algorithm with a range of cluster numbers and
 plodng the Within-Cluster Sum of Squares (WCSS) against the number of clusters. The
 "elbow" in the plot signifies the op'mal number of clusters, where further par''oning
 offers diminishing returns.
+
 4.3 K-Means Clustering:
+
 Based on the Elbow Method, a specific number of clusters (k) was selected. In this case, k
 = 4 was deemed appropriate for segmen'ng the customers.
 The K-Means algorithm was then applied to the standardized RFM scores, resul'ng in the
 assignment of each customer to a specific cluster. The 'Cluster' column in the dataset
 indicates the segment to which each customer belongs.
-4.4 Resul)ng Customer Segmenta)on:
+
+4.4 Resul)ng Customer Segmentation:
+
 The resul'ng dataset now includes the 'Cluster' column, providing informa'on about the
 segment to which each customer belongs. These segments represent groups of customers
 with similar RFM characteris'cs.
@@ -127,108 +174,159 @@ CustomerID ... Cluster
 4369 18282 ... 3
 4370 18283 ... 3
 4371 18287 ... 1
+
 4.5 Visualizing the Clusters:
+
 The Elbow Method plot was instrumental in determining the op'mal number of clusters.
 By selec'ng an appropriate number of clusters, we ensure that each segment is dis'nct
 and meaningful, providing valuable insights for targeted marke'ng strategies.
-6. Segment Profiling:
+
+#5. Segment Profiling:
+    
 In this sec'on, we analyze and profile each customer segment based on the K-Means
 clustering results. We describe the characteris'cs of customers in each segment,
 including their RFM scores and any other relevant ajributes.
+
 5.1 Segment 0:
+
 Characteris'cs:
+
 • Recency (R): High recency scores, indica'ng recent purchases.
 • Frequency (F): Moderate frequency scores.
 • Monetary (M): Moderate monetary scores.
+
 Recommenda'ons:
+
 • Offer exclusive loyalty programs to encourage purchases and increase frequency.
 • Send personalized product recommenda'ons based on searching pajerns and
 previous purchases with special offers to tempt them back.
 • Run email or SMS campaigns to keep them connected with the brand.
+
 5.2 Segment 1:
+
 Characteris'cs:
+
 • Recency (R): Moderate recency scores.
 • Frequency (F): High frequency scores, indica'ng loyal customers.
 • Monetary (M): High monetary scores.
+
 Recommenda'ons:
+
 • Recognize and reward their loyalty with member points or exclusive access to new
 products and events.
 • Suggest complementary products to increase their order value.
 • Ask for their feedback on products purchased and services to further tailor your
 offerings.
+
 5.3 Segment 2:
+
 Characteris'cs:
+
 • Recency (R): Low recency scores.
 • Frequency (F): Low to moderate frequency scores.
 • Monetary (M): Low to moderate monetary scores.
+
 Recommenda'ons:
+
 • Recommend higher-value products or bundles to increase their spend.
 • Create promo'ons for limited 'me offers to encourage more frequent purchases.
 • Share content that highlights the benefits of your products to boost their perceived
 value.
+
 5.4 Segment 3:
+
 Characteris'cs:
+
 • Recency (R): Moderate to high recency scores.
 • Frequency (F): Moderate frequency scores.
 • Monetary (M): Moderate to high monetary scores.
+
 Recommenda'ons:
+
 • Send targeted campaigns with ajrac've offers to re-engage them.
 • Iden'fy the reasons for their non-purchase and develop strategies to win them back.
 • Ask for feedback and work on improving aspects that pushed them away from
 purchasing.
 These segment profiles and recommenda'ons provide ac'onable insights for tailoring
 marke'ng strategies to each group's unique characteris'cs and behaviors.
-7. Marke9ng Recommenda9ons:
+
+#6. Marke9ng Recommenda9ons:
+
 In this sec'on, we provide ac'onable marke'ng recommenda'ons for each customer
 segment. These recommenda'ons are tailored to improve customer reten'on and
 maximize revenue by addressing the unique characteris'cs and behaviors of each group.
+
 6.1 High-Value Customers:
+
 Recommenda'ons:
+
 • Reten'on: Focus on retaining these customers through loyalty programs and exclusive
 offers.
 • Upsell: Iden'fy complementary products and offer bundle deals to increase sales.
+
 6.2 Poten)al High-Value Customers:
+
 Recommenda'ons:
+
 • Promo'ons: Offer incen'ves to encourage addi'onal purchases and discounts on
 related products.
 • Personaliza'on: Use purchase history for personalized product recommenda'ons.
+
 6.3 Low-Frequency, High-Value Customers:
+
 Recommenda'ons:
+
 • Win-Back Campaigns: Target inac've customers with special promo'ons to reac'vate
 them.
 • Subscrip'on Models: Introduce subscrip'on services to ensure steady revenue.
+
 6.4 Low-Value Customers:
+
 Recommenda'ons:
+
 • Customer Educa'on: Provide informa've content to help customers understand
 product value.
 • Reac'va'on Campaigns: Create reac'va'on campaigns with exclusive offers.
+
 6.5 General Recommenda)ons:
+
 For clusters not explicitly men'oned, general recommenda'ons include:
 • Collect customer feedback: Understand customer preferences and pain points.
 • Conduct A/B tes'ng: Con'nuously op'mize marke'ng strategies based on customer
 responses.
+
 These targeted recommenda'ons align with the specific needs and behaviors of each
 customer segment, offering a strategic approach for maximizing customer engagement,
 reten'on, and revenue.
-8. Visualiza9on:
-7.1 RFM Distribu)on:
-Recency Distribu'on:
+
+#7. Visualization:
+
+7.1 RFM Distribution:
+
+Recency Distribution:
+
 The Recency Distribu'on chart depicts the distribu'on of days since the last purchase
 across customers. The peak around 0 indicates a group of customers who made recent
 purchases, while the tail shows customers with less recent transac'ons. Understanding
 recency is crucial for iden'fying ac've and poten'ally lapsed customers.
+
 Frequency Distribu'on:
+
 The Frequency Distribu'on chart illustrates the distribu'on of the total number of
 transac'ons for each customer. Peaks at higher frequencies indicate loyal and engaged
 customers, while the tail represents customers with fewer transac'ons. This insight helps
 in iden'fying the core customer base and tailoring strategies for different engagement
 levels.
+
 Monetary Distribu'on:
+
 The Monetary Distribu'on chart showcases the distribu'on of total spend by customers.
 Peaks at higher spend levels indicate high-value customers, while the tail represents
 customers with lower monetary contribu'ons. Analyzing monetary distribu'on aids in
 iden'fying customers with significant value and tailoring strategies to maximize revenue.
+
 Find The Solu@ons:
+
 1. Data Overview:
 Size of the Dataset:
 The dataset contains 401,604 rows and 9 columns.
