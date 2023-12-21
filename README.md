@@ -1,1 +1,1 @@
-# Customer-Segmenta.on-using-RFM-Analysis
+# Customer-Segmentation-using-RFM-Analysis
