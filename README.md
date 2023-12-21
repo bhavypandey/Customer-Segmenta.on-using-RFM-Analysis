@@ -1,7 +1,9 @@
 # Customer-Segmentation-using-RFM-Analysis
 1. Data Preprocessing:
+
 1.1 Impor)ng the Dataset:
-The ini'al phase involved importing the eCommerce dataset, which was retrieved from
+
+The initial phase involved importing the eCommerce dataset, which was retrieved from
 the provided Kaggle link. The dataset was loaded into a panda DataFrame, allowing for
 efficient explora'on and manipula'on of the data.
 1.2 Handling Missing Values:
@@ -24,7 +26,7 @@ calcula'ons, ensuring accurate recency calcula'ons for RFM analysis.
 The 'CustomerID' column, ini'ally represented as floa'ng-point numbers, was converted
 to the int64 data type. This conversion aligns with standard prac'ces for customer
 iden'fica'on and supports compa'bility with subsequent calcula'ons.
-2. RFM Calcula9on:
+3. RFM Calcula9on:
 In this sec'on, we further refined the RFM metrics by incorpora'ng the most recent
 purchase date and addi'onal transac'on-related metrics.
 2.1 Recent Purchase Date (Recency - R):
@@ -54,7 +56,7 @@ These metrics form a more comprehensive view of customer behavior, capturing rec
 frequency, and product diversity. The subsequent sec'ons will leverage these refined
 RFM metrics for customer segmenta'on, providing valuable insights for targeted
 marke'ng and engagement strategies.
-3. RFM Segmenta9on:
+4. RFM Segmenta9on:
 In this sec'on, we assigned RFM scores to each customer based on quar'les, enabling the
 crea'on of a single RFM score for comprehensive customer segmenta'on.
 3.1 Recency Score (R):
@@ -87,7 +89,7 @@ The resul'ng dataset now includes the following RFM metrics and segmenta'on:
 • Monetary_Score: Monetary score based on quar'les.
 • RFM_Score: Combined RFM score, indica'ng the overall engagement and value
 contribu'on of each customer.
-4. Customer Segmenta9on:
+5. Customer Segmenta9on:
 In this sec'on, we u'lized clustering techniques, specifically K-Means clustering, to
 segment customers based on their RFM scores. The objec've was to uncover meaningful
 groups that share similar characteris'cs, aiding in targeted marke'ng and engagement
@@ -129,7 +131,7 @@ CustomerID ... Cluster
 The Elbow Method plot was instrumental in determining the op'mal number of clusters.
 By selec'ng an appropriate number of clusters, we ensure that each segment is dis'nct
 and meaningful, providing valuable insights for targeted marke'ng strategies.
-5. Segment Profiling:
+6. Segment Profiling:
 In this sec'on, we analyze and profile each customer segment based on the K-Means
 clustering results. We describe the characteris'cs of customers in each segment,
 including their RFM scores and any other relevant ajributes.
@@ -176,7 +178,7 @@ Recommenda'ons:
 purchasing.
 These segment profiles and recommenda'ons provide ac'onable insights for tailoring
 marke'ng strategies to each group's unique characteris'cs and behaviors.
-6. Marke9ng Recommenda9ons:
+7. Marke9ng Recommenda9ons:
 In this sec'on, we provide ac'onable marke'ng recommenda'ons for each customer
 segment. These recommenda'ons are tailored to improve customer reten'on and
 maximize revenue by addressing the unique characteris'cs and behaviors of each group.
@@ -208,7 +210,7 @@ responses.
 These targeted recommenda'ons align with the specific needs and behaviors of each
 customer segment, offering a strategic approach for maximizing customer engagement,
 reten'on, and revenue.
-7. Visualiza9on:
+8. Visualiza9on:
 7.1 RFM Distribu)on:
 Recency Distribu'on:
 The Recency Distribu'on chart depicts the distribu'on of days since the last purchase
